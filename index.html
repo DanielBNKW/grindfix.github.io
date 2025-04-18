@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRINDFIX - Profesjonalny Serwis Rowerowy</title>
+    <meta name="description" content="Profesjonalny serwis rowerowy oferujący przeglądy, naprawy i kompleksowe usługi dla wszystkich typów rowerów. Szybka realizacja, konkurencyjne ceny.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#FFEB3B',
+                        dark: '#2E7D32',
+                        light: '#8BC34A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .active-tab {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .map-container {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        
+        .map-container iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="bg-primary text-white p-2 rounded-lg mr-2">
+                    <i class="fas fa-bicycle text-2xl"></i>
+                </div>
+                <a href="#" class="text-2xl font-bold text-gray-800">GRINDFIX</a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-primary font-medium">Strona Główna</a>
+                <a href="#services" class="text-gray-800 hover:text-primary font-medium">Usługi</a>
+                <a href="#about" class="text-gray-800 hover:text-primary font-medium">O Nas</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary font-medium">Kontakt</a>
+                <a href="#faq" class="text-gray-800 hover:text-primary font-medium">FAQ</a>
+            </nav>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-800 hover:text-primary">Strona Główna</a>
+            <a href="#services" class="block py-2 text-gray-800 hover:text-primary">Usługi</a>
+            <a href="#about" class="block py-2 text-gray-800 hover:text-primary">O Nas</a>
+            <a href="#contact" class="block py-2 text-gray-800 hover:text-primary">Kontakt</a>
+            <a href="#faq" class="block py-2 text-gray-800 hover:text-primary">FAQ</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-white py-20 md:py-32 animate-fadeIn">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Profesjonalny Serwis Rowerowy</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Kompleksowa obsługa Twojego roweru - od przeglądów po specjalistyczne naprawy. Dbamy o każdy szczegół!</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#booking" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Zarezerwuj wizytę</a>
+                <a href="#services" class="bg-secondary hover:bg-yellow-500 text-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300">Nasze usługi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Services -->
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Popularne Usługi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="text-primary mb-4">
+                        <i class="fas fa-search text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Przegląd Roweru</h3>
+                    <p class="text-gray-600 mb-4">Kompleksowa kontrola stanu technicznego Twojego roweru.</p>
+                    <div class="text-primary font-bold text-xl">42 zł</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="text-primary mb-4">
+                        <i class="fas fa-cog text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Regulacja Przerzutek</h3>
+                    <p class="text-gray-600 mb-4">Precyzyjna regulacja zapewniająca płynne zmiany biegów.</p>
+                    <div class="text-primary font-bold text-xl">35 zł</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="text-primary mb-4">
+                        <i class="fas fa-tire text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Wymiana Opony</h3>
+                    <p class="text-gray-600 mb-4">Profesjonalna wymiana opony z kontrolą stanu dętki.</p>
+                    <div class="text-primary font-bold text-xl">Od 30 zł</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Nasze Usługi</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Oferujemy kompleksowe usługi serwisowe dla wszystkich typów rowerów - od miejskich po elektryczne.</p>
+            
+            <!-- Service Tabs -->
+            <div class="flex flex-wrap justify-center mb-8 gap-2">
+                <button onclick="openTab(event, 'bike-check')" class="tab-btn active-tab px-4 py-2 rounded-lg font-medium">Przegląd Roweru</button>
+                <button onclick="openTab(event, 'tires')" class="tab-btn px-4 py-2 rounded-lg font-medium">Usługi Ogumienia</button>
+                <button onclick="openTab(event, 'wheels')" class="tab-btn px-4 py-2 rounded-lg font-medium">Usługi Kół</button>
+                <button onclick="openTab(event, 'adjustments')" class="tab-btn px-4 py-2 rounded-lg font-medium">Regulacje</button>
+                <button onclick="openTab(event, 'parts')" class="tab-btn px-4 py-2 rounded-lg font-medium">Wymiany Części</button>
+                <button onclick="openTab(event, 'additional')" class="tab-btn px-4 py-2 rounded-lg font-medium">Dodatkowe</button>
+            </div>
+            
+            <!-- Tab Content -->
+            <div id="bike-check" class="tab-content animate-fadeIn">
+                <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm mb-6 transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Podstawowy Przegląd Roweru</h3>
+                            <p class="text-gray-600">Kompleksowa kontrola stanu technicznego roweru z kosztorysem ewentualnych napraw.</p>
+                        </div>
+                        <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">42 zł</div>
+                    </div>
+                </div>
+                
+                <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm mb-6 transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Zaawansowany Przegląd Roweru</h3>
+                            <p class="text-gray-600">Pełna diagnostyka, czyszczenie i smarowanie wszystkich ruchomych części.</p>
+                        </div>
+                        <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tires" class="tab-content hidden animate-fadeIn">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana dętki</h3>
+                                <p class="text-gray-600">Standardowy rower</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana dętki</h3>
+                                <p class="text-gray-600">Rower elektryczny</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">45 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony</h3>
+                                <p class="text-gray-600">Standardowy rower</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">40 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Konwersja na Tubeless</h3>
+                                <p class="text-gray-600">Za koło (bez kosztów materiałów)</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">80 zł</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="wheels" class="tab-content hidden animate-fadeIn">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Centrowanie koła</h3>
+                                <p class="text-gray-600">Standardowe koło</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">60 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Budowa koła na zamówienie</h3>
+                                <p class="text-gray-600">Od podstaw z nowych komponentów</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Serwis koła z silnikiem</h3>
+                                <p class="text-gray-600">Dla rowerów elektrycznych</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">200 zł</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="adjustments" class="tab-content hidden animate-fadeIn">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja przerzutek</h3>
+                                <p class="text-gray-600">Tylnej i przedniej</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">35 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja hamulców hydraulicznych</h3>
+                                <p class="text-gray-600">Ustawienie i odpowietrzenie</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">95 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja sterów</h3>
+                                <p class="text-gray-600">Ustawienie kierownicy i widelca</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja wspornika kierownicy</h3>
+                                <p class="text-gray-600">Dokładne ustawienie wysokości</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">25 zł</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="parts" class="tab-content hidden animate-fadeIn">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana bębenka piasty</h3>
+                                <p class="text-gray-600">Standardowy rower</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana suportu</h3>
+                                <p class="text-gray-600">Różne typy suportów</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">48 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana widelca</h3>
+                                <p class="text-gray-600">Z demontażem i montażem koła</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana korby</h3>
+                                <p class="text-gray-600">Z zestawem zębatek</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">65 zł</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="additional" class="tab-content hidden animate-fadeIn">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Smarowanie łańcucha</h3>
+                                <p class="text-gray-600">Czyszczenie i nałożenie profesjonalnego smaru</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">20 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Serwis roweru elektrycznego</h3>
+                                <p class="text-gray-600">Diagnostyka układu elektrycznego</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">150 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Montaż roweru z paczki</h3>
+                                <p class="text-gray-600">Podstawowy montaż</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">100 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Budowa roweru z części</h3>
+                                <p class="text-gray-600">Kompletna budowa od podstaw</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">600 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony w hulajnodze</h3>
+                                <p class="text-gray-600">Standardowa wymiana</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony w hulajnodze elektrycznej</h3>
+                                <p class="text-gray-600">Z demontażem silnika</p>
+                            </div>
+                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">155 zł</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Rezerwacja Online</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Wybierz usługę, termin i zarezerwuj wizytę w naszym serwisie.</p>
+            
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+                <form id="booking-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Wybierz usługę*</label>
+                            <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                <option value="">-- Wybierz usługę --</option>
+                                <option value="basic-check">Podstawowy Przegląd Roweru - 42 zł</option>
+                                <option value="advanced-check">Zaawansowany Przegląd Roweru - 120 zł</option>
+                                <option value="tire-change">Wymiana dętki - od 30 zł</option>
+                                <option value="wheel-center">Centrowanie koła - 60 zł</option>
+                                <option value="gears-adjust">Regulacja przerzutek - 35 zł</option>
+                                <option value="brakes-adjust">Regulacja hamulców hydraulicznych - 95 zł</option>
+                                <option value="chain-service">Smarowanie łańcucha - 20 zł</option>
+                                <option value="other">Inna usługa (wyjaśnij w uwagach)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="date" class="block text-gray-700 font-medium mb-2">Data wizyty*</label>
+                            <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Imię i nazwisko*</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon*</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email*</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="bike-type" class="block text-gray-700 font-medium mb-2">Typ roweru</label>
+                            <select id="bike-type" name="bike-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="standard">Standardowy</option>
+                                <option value="electric">Elektryczny</option>
+                                <option value="mtb">Górski (MTB)</option>
+                                <option value="road">Szosowy</option>
+                                <option value="city">Miejski</option>
+                                <option value="other">Inny</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <label for="notes" class="block text-gray-700 font-medium mb-2">Uwagi</label>
+                        <textarea id="notes" name="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-center">
+                        <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Zarezerwuj</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nasz serwis rowerowy" class="rounded-lg shadow-lg w-full">
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">O Nas</h2>
+                    <p class="text-gray-600 mb-4">GRINDFIX to profesjonalny serwis rowerowy z wieloletnim doświadczeniem w branży. Nasza pasja do rowerów przekłada się na najwyższą jakość świadczonych usług.</p>
+                    <p class="text-gray-600 mb-4">Zespół tworzą wykwalifikowani mechanicy, którzy regularnie podnoszą swoje kwalifikacje, aby zapewnić kompleksową obsługę wszystkich typów rowerów - od miejskich po specjalistyczne rowery elektryczne.</p>
+                    <p class="text-gray-600 mb-6">W naszej pracy kierujemy się zasadą "zrób to dobrze za pierwszym razem". Dzięki temu nasi klienci mogą cieszyć się sprawnym rowerem przez długi czas.</p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-2 rounded-full mr-2">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700">Profesjonalizm</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-2 rounded-full mr-2">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700">Doświadczenie</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-2 rounded-full mr-2">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700">Jakość</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-2 rounded-full mr-2">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-gray-700">Terminowość</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Opinie Naszych Klientów</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Profesjonalna obsługa i szybka realizacja. Mój rower jeździ jak nowy po przeglądzie w GRINDFIX. Polecam!"</p>
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Marek K.</h4>
+                                <p class="text-sm text-gray-500">Klient od 2021</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Świetna atmosfera i fachowa porada. W końcu znalazłam serwis, któremu mogę zaufać jeśli chodzi o mój rower elektryczny."</p>
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Anna Z.</h4>
+                                <p class="text-sm text-gray-500">Klientka od 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Budowa koła na zamówienie wykonana perfekcyjnie. Minus za długi czas oczekiwania (2 tygodnie), ale warto było czekać."</p>
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Tomasz W.</h4>
+                                <p class="text-sm text-gray-500">Klient od 2020</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Kontakt</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Masz pytania? Chętnie na nie odpowiemy. Skontaktuj się z nami telefonicznie, mailowo lub odwiedź nasz serwis.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-6 text-gray-800">Dane kontaktowe</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-primary mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Adres</h4>
+                                <p class="text-gray-600">Antoniego Józefa Madalińskiego 39/43, <br>02-544 Warszawa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Telefon</h4>
+                                <p class="text-gray-600">+48 792 537 727</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary mr-4 mt-1">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Email</h4>
+                                <p class="text-gray-600">kontakt@grindfix.pl</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary mr-4 mt-1">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Godziny otwarcia</h4>
+                                <p class="text-gray-600">Pon-Pt: 9:00 - 18:00<br>Sob: 10:00 - 14:00<br>Niedz: Zamknięte</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-medium text-gray-800 mb-4">Znajdź nas na:</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-6 text-gray-800">Formularz kontaktowy</h3>
+                    
+                    <form id="contact-form">
+                        <div class="mb-4">
+                            <label for="contact-name" class="block text-gray-700 font-medium mb-2">Imię i nazwisko*</label>
+                            <input type="text" id="contact-name" name="contact-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="contact-email" class="block text-gray-700 font-medium mb-2">Email*</label>
+                            <input type="email" id="contact-email" name="contact-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="contact-phone" class="block text-gray-700 font-medium mb-2">Telefon</label>
+                            <input type="tel" id="contact-phone" name="contact-phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="contact-subject" class="block text-gray-700 font-medium mb-2">Temat*</label>
+                            <select id="contact-subject" name="contact-subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                <option value="">-- Wybierz temat --</option>
+                                <option value="question">Pytanie o usługę</option>
+                                <option value="booking">Rezerwacja terminu</option>
+                                <option value="complaint">Reklamacja</option>
+                                <option value="other">Inny</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="contact-message" class="block text-gray-700 font-medium mb-2">Wiadomość*</label>
+                            <textarea id="contact-message" name="contact-message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Wyślij</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.650385365508!2d21.01272431579689!3d52.22967597976097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!5e0!3m2!1spl!2spl!4v1621439973992!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Często Zadawane Pytania</h2>
+            <p class="text-center text-gray-600 mb-12">Odpowiedzi na najpopularniejsze pytania naszych klientów.</p>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Jak zarezerwować usługę?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Rezerwacji możesz dokonać na kilka sposobów:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Online poprzez formularz rezerwacyjny na naszej stronie</li>
+                                <li>Telefonicznie pod numerem +48 123 456 789</li>
+                                <li>Osobiście w naszym serwisie przy ul. Rowerowej 15 w Warszawie</li>
+                            </ul>
+                            <p class="mt-2">Po rezerwacji otrzymasz potwierdzenie terminu mailem lub SMS-em.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Jaki jest czas realizacji budowy koła?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Standardowy czas realizacji budowy koła na zamówienie to do 14 dni roboczych. Czas ten może się wydłużyć w przypadku:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Trudno dostępnych komponentów</li>
+                                <li>Okresu wzmożonego ruchu w sezonie wiosenno-letnim</li>
+                                <li>Specjalistycznych zamówień (np. koła do rowerów tandemowych)</li>
+                            </ul>
+                            <p class="mt-2">O dokładnym terminie realizacji poinformujemy Cię po złożeniu zamówienia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Co obejmuje przegląd roweru?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Podstawowy przegląd roweru (42 zł) obejmuje:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Kontrolę stanu ogumienia i ciśnienia w oponach</li>
+                                <li>Sprawdzenie działania hamulców</li>
+                                <li>Kontrolę stanu i ustawienia przerzutek</li>
+                                <li>Sprawdzenie luzów w układzie kierowniczym i suporcie</li>
+                                <li>Kontrolę stanu łańcucha i zębatek</li>
+                                <li>Ogólną ocenę stanu technicznego roweru</li>
+                            </ul>
+                            <p class="mt-2">Po przeglądzie otrzymasz szczegółowy kosztorys ewentualnych napraw.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Czy mogę zostawić rower w serwisie na czas naprawy?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Tak, dysponujemy bezpiecznym parkingiem rowerowym, gdzie możesz zostawić swój rower na czas naprawy. Parking jest:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Monitorowany</li>
+                                <li>Zadaszony</li>
+                                <li>Dostępny w godzinach pracy serwisu</li>
+                            </ul>
+                            <p class="mt-2">Za przechowanie roweru powyżej 3 dni roboczych pobierana jest opłata 5 zł za każdy kolejny dzień.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Czy serwisujecie rowery elektryczne?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-gray-600">
+                            <p>Tak, specjalizujemy się w serwisie rowerów elektrycznych. Oferujemy:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Diagnostykę układu elektrycznego</li>
+                                <li>Naprawy i konserwację silników</li>
+                                <li>Wymianę baterii</li>
+                                <li>Regulację i naprawę systemów wspomagania</li>
+                                <li>Montaż akcesoriów elektrycznych</li>
+                            </ul>
+                            <p class="mt-2">Posiadamy specjalistyczne narzędzia i szkolenia do pracy z rowerami elektrycznymi najpopularniejszych marek.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
+                        <span class="font-medium text-gray-800 text-left">Jakie metody płatności akceptujecie?</span>
+                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="p-4 text-gray-600">
+                                    <p>Akceptujemy następujące formy płatności:</p>
+                                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                                        <li>Gotówkę</li>
+                                        <li>Karty płatnicze (Visa, Mastercard)</li>
+                                        <li>Płatności online (Przelewy24, PayPal)</li>
+                                        <li>Przelewy bankowe (przedpłata za usługi powyżej 500 zł)</li>
+                                    </ul>
+                                    <p class="mt-2">W przypadku firm możliwa jest płatność z odroczonym terminem płatności (wymagane wcześniejsze ustalenia).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="py-12 bg-primary text-white">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-2xl font-bold mb-4">Zapisz się do naszego newslettera</h2>
+                    <p class="mb-6 max-w-2xl mx-auto">Otrzymuj informacje o promocjach, porady serwisowe i nowościach w świecie rowerów.</p>
+                    
+                    <form class="max-w-md mx-auto flex">
+                        <input type="email" placeholder="Twój email" class="flex-grow px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+                        <button type="submit" class="bg-secondary hover:bg-yellow-500 text-gray-800 font-bold px-6 py-2 rounded-r-lg transition duration-300">Zapisz się</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="bg-gray-800 text-white py-8">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary text-white p-2 rounded-lg mr-2">
+                                    <i class="fas fa-bicycle"></i>
+                                </div>
+                                <span class="text-xl font-bold">GRINDFIX</span>
+                            </div>
+                            <p class="text-gray-400">Profesjonalny serwis rowerowy w Warszawie. Dbamy o Twoje dwa kółka od 2010 roku.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-bold mb-4">Usługi</h3>
+                            <ul class="space-y-2 text-gray-400">
+                                <li><a href="#" class="hover:text-white transition duration-200">Przeglądy</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Naprawy</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Regulacje</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Budowa kół</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Serwis e-bike</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-bold mb-4">Informacje</h3>
+                            <ul class="space-y-2 text-gray-400">
+                                <li><a href="#" class="hover:text-white transition duration-200">O nas</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Kontakt</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">FAQ</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Blog</a></li>
+                                <li><a href="#" class="hover:text-white transition duration-200">Kariera</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-bold mb-4">Kontakt</h3>
+                            <address class="not-italic text-gray-400 space-y-2">
+                                <p>ul. Rowerowa 15<br>00-001 Warszawa</p>
+                                <p>Tel: +48 123 456 789</p>
+                                <p>Email: kontakt@grindfix.pl</p>
+                            </address>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 GRINDFIX. Wszelkie prawa zastrzeżone.</p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Back to Top Button -->
+            <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+
+            <script>
+                // Mobile Menu Toggle
+                const menuToggle = document.getElementById('menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Service Tabs
+                function openTab(evt, tabName) {
+                    const tabContents = document.getElementsByClassName('tab-content');
+                    for (let i = 0; i < tabContents.length; i++) {
+                        tabContents[i].classList.add('hidden');
+                    }
+                    
+                    const tabButtons = document.getElementsByClassName('tab-btn');
+                    for (let i = 0; i < tabButtons.length; i++) {
+                        tabButtons[i].classList.remove('active-tab');
+                    }
+                    
+                    document.getElementById(tabName).classList.remove('hidden');
+                    evt.currentTarget.classList.add('active-tab');
+                }
+                
+                // Set first tab as active by default
+                document.addEventListener('DOMContentLoaded', function() {
+                    const firstTabBtn = document.querySelector('.tab-btn');
+                    if (firstTabBtn) {
+                        firstTabBtn.classList.add('active-tab');
+                    }
+                });
+                
+                // FAQ Accordion
+                const accordionBtns = document.querySelectorAll('.accordion-btn');
+                
+                accordionBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.querySelector('i').classList.toggle('rotate-180');
+                        
+                        const content = this.nextElementSibling;
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                        }
+                    });
+                });
+                
+                // Back to Top Button
+                const backToTopBtn = document.getElementById('back-to-top');
+                
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.remove('opacity-0', 'invisible');
+                        backToTopBtn.classList.add('opacity-100', 'visible');
+                    } else {
+                        backToTopBtn.classList.remove('opacity-100', 'visible');
+                        backToTopBtn.classList.add('opacity-0', 'invisible');
+                    }
+                });
+                
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // Form Submissions
+                const bookingForm = document.getElementById('booking-form');
+                const contactForm = document.getElementById('contact-form');
+                
+                if (bookingForm) {
+                    bookingForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        alert('Dziękujemy za rezerwację! Skontaktujemy się z Tobą w celu potwierdzenia terminu.');
+                        this.reset();
+                    });
+                }
+                
+                if (contactForm) {
+                    contactForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        alert('Dziękujemy za wiadomość! Odpowiemy najszybciej jak to możliwe.');
+                        this.reset();
+                    });
+                }
+                
+                // Smooth scrolling for navigation
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Close mobile menu if open
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+            </script>
+        </body>
+        </html>
