@@ -1,610 +1,1053 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRINDFIX - Profesjonalny Serwis Rowerowy</title>
-    <meta name="description" content="Profesjonalny serwis rowerowy oferujący przeglądy, naprawy i kompleksowe usługi dla wszystkich typów rowerów. Szybka realizacja, konkurencyjne ceny.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4CAF50',
-                        secondary: '#FFEB3B',
-                        dark: '#2E7D32',
-                        light: '#8BC34A',
-                    }
-                }
-            }
-        }
-    </script>
+    <title data-en="WBW Legal - Your Trusted Legal Partner in Europe" data-pl="WBW Legal - Twój Zaufany Partner Prawny w Europie" data-ru="WBW Legal - Ваш Надежный Юридический Партнер в Европе">WBW Legal - Your Trusted Legal Partner in Europe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        /* General Styles & Variables */
+        :root {
+            --primary-navy: #1B2A41;
+            --accent-gold: #D4AF37;
+            --accent-slate: #4F6D7A;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --soft-blue: #E0F2F7; /* A bit lighter than slate for background */
+            --text-dark: #333333;
+            --text-light: #EEEEEE;
+            --header-height: 80px;
+            --max-width: 1200px;
+            --padding-section: 80px 0;
+            --transition-duration: 0.3s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Serif 4', serif;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3.5em; line-height: 1.1; }
+        h2 { font-size: 2.8em; }
+        h3 { font-size: 2.2em; }
+        h4 { font-size: 1.8em; }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-duration), color var(--transition-duration);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-navy);
+            color: var(--white);
+            border: 2px solid var(--primary-navy);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--primary-navy);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+            background-color: transparent; /* Default */
+            color: var(--white); /* Default for hero */
+        }
+
+        .header.scrolled {
+            background-color: var(--primary-navy); /* Solid navy */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            color: var(--white);
+        }
+
+        .header.scrolled .nav-link,
+        .header.scrolled .logo-text {
+            color: var(--white);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--white); /* Default for hero */
+            transition: color var(--transition-duration);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            transition: color var(--transition-duration);
+            color: var(--white); /* Default for hero */
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-switcher {
+            position: relative;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--white); /* Default for hero */
+            transition: color var(--transition-duration);
+        }
+
+        .lang-switcher:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--primary-navy);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            min-width: 80px;
+        }
+
+        .lang-switcher.active .lang-dropdown {
+            display: block;
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--white);
+            transition: background-color var(--transition-duration);
+        }
+
+        .lang-dropdown a:hover, .lang-dropdown a.active-lang {
+            background-color: var(--accent-slate);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Urban skyline / office interior */
             background-size: cover;
             background-position: center;
         }
-        
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(27, 42, 65, 0.7); /* Dark navy with 70% opacity */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        .hero-headline {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .hero-subheadline {
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-badges {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Services Section */
+        .services-section {
+            background-color: var(--white);
+            padding: var(--padding-section);
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background-color: var(--light-gray);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            height: 100%; /* Ensure equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
         .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            font-family: 'Inter', sans-serif; /* For service titles */
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 1em;
+            color: var(--text-dark);
+            flex-grow: 1; /* Pushes content down if needed */
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us-section {
+            background-color: var(--soft-blue);
+            padding: var(--padding-section);
+            text-align: center;
+        }
+
+        .why-choose-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        .why-icon {
+            font-size: 3.5em;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            font-size: 1.5em;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .why-card p {
+            font-size: 1em;
+            color: var(--text-dark);
+        }
+
+        /* Our Expertise Section */
+        .expertise-section {
+            background-color: var(--white);
+            padding: var(--padding-section);
+            text-align: center;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .expertise-item {
+            background-color: var(--light-gray);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .expertise-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+
+        .expertise-icon {
+            font-size: 2em;
+            color: var(--accent-gold);
+            flex-shrink: 0;
         }
-        
-        .active-tab {
-            background-color: #4CAF50;
-            color: white;
+
+        .expertise-item p {
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin: 0;
         }
-        
-        .map-container {
-            overflow: hidden;
-            padding-bottom: 56.25%;
+
+
+        /* About / Team Section */
+        .team-section {
+            background-color: var(--light-gray);
+            padding: var(--padding-section);
+            text-align: center;
+        }
+
+        .team-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
             position: relative;
-            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background-color: var(--white);
+            transition: transform var(--transition-duration);
         }
-        
-        .map-container iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
             width: 100%;
+            height: 300px; /* Fixed height for consistent look */
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 25px 20px;
+            background-color: var(--white);
+            text-align: left;
+        }
+
+        .team-info h4 {
+            color: var(--primary-navy);
+            font-size: 1.4em;
+            margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .team-info p {
+            font-size: 0.95em;
+            color: var(--accent-slate);
+            margin-bottom: 15px;
+        }
+
+        .team-info .bio {
+            font-size: 0.9em;
+            color: var(--text-dark);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--soft-blue);
+            padding: var(--padding-section);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .contact-intro h2 {
+            margin-bottom: 20px;
+            font-size: 3em;
+        }
+
+        .contact-intro p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .contact-details ul {
+            list-style: none;
+        }
+
+        .contact-details ul li {
+            margin-bottom: 20px; /* Increased margin for more separation */
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            color: var(--primary-navy);
+        }
+
+        .contact-details ul li strong {
+            margin-right: 10px;
+            color: var(--primary-navy);
+            font-weight: 600;
+            min-width: 90px; /* Give labels a consistent width */
+        }
+
+        .contact-details ul li i { /* Corrected selector from svg to i */
+            margin-right: 10px;
+            color: var(--accent-gold);
+            font-size: 1.5em;
+        }
+
+        .contact-form-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .contact-form-card form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            font-size: 0.95em;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            color: var(--text-dark);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--primary-navy);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::after {
+            content: '✔';
+            color: var(--white);
+            font-size: 12px;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .contact-form-card .btn {
+            width: auto; /* Allow button to size to content */
+            align-self: flex-start; /* Align to the left */
         }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.5s ease-in;
+
+        .google-map {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 350px;
+            width: 100%;
+        }
+
+        .google-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-navy);
+            color: var(--white);
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--white);
+            transition: color var(--transition-duration);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-col .logo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .footer-col .slogan {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            color: var(--white);
+            font-size: 1.5em;
+            transition: color var(--transition-duration);
+        }
+
+        .social-icon:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        /* Utility classes for icons */
+        .icon-hammer:before { content: "🔨"; } /* Law Hammer */
+        .icon-building:before { content: "🏢"; } /* Building */
+        .icon-handshake:before { content: "🤝"; } /* Handshake */
+        .icon-family:before { content: "👨‍👩‍👧‍👦"; } /* Family */
+        .icon-gavel:before { content: "⚖️"; } /* Gavel */
+        .icon-chart:before { content: "📊"; } /* Chart/Tax */
+        .icon-email:before { content: "✉️"; }
+        .icon-phone:before { content: "☎️"; }
+        .icon-address:before { content: "📍"; }
+        .icon-hours:before { content: "🕒"; }
+        .icon-linkedin:before { content: "\f08c"; font-family: 'Font Awesome 5 Brands'; } /* Requires Font Awesome */
+        .icon-star:before { content: "⭐"; }
+        .icon-shield:before { content: "🛡️"; }
+        .icon-globe:before { content: "🌍"; }
+        .icon-lightbulb:before { content: "💡"; }
+        .icon-balance:before { content: "⚖️"; }
+        .icon-search:before { content: "🔍"; }
+        .icon-briefcase-solid:before { content: "💼"; }
+        .icon-file-alt:before { content: "📝"; }
+        .icon-users-solid:before { content: "👥"; }
+        .icon-landmark:before { content: "🏛️"; }
+        .icon-dollar-sign:before { content: "💲"; }
+        .icon-clock:before { content: "⏰"; }
+        .icon-award:before { content: "🏆"; }
+        .icon-redo:before { content: "\f01e"; font-family: 'Font Awesome 5 Free'; font-weight: 900; } /* redo-alt */
+        .icon-leaf:before { content: "\f06c"; font-family: 'Font Awesome 5 Free'; font-weight: 900; } /* leaf */
+        .icon-ship:before { content: "\f21a"; font-family: 'Font Awesome 5 Free'; font-weight: 900; } /* ship */
+        .icon-usd:before { content: "\f3d1"; font-family: 'Font Awesome 5 Free'; font-weight: 900; } /* hand-holding-usd */
+        .icon-bezier:before { content: "\f55b"; font-family: 'Font Awesome 5 Free'; font-weight: 900; } /* bezier-curve */
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-headline {
+                font-size: 3.5em;
+            }
+            .hero-subheadline {
+                font-size: 1.5em;
+            }
+            .main-nav ul {
+                display: none; /* Hide for smaller screens, could implement a hamburger menu */
+            }
+            .header-content {
+                justify-content: center;
+            }
+            .lang-switcher {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .services-grid, .why-choose-us-grid, .expertise-grid, .team-grid, .contact-content, .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .contact-form-card {
+                padding: 30px;
+            }
+            .services-grid, .why-choose-us-grid, .expertise-grid, .team-grid {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .team-member img {
+                height: 250px;
+            }
+            .footer-col {
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8em; }
+            h2 { font-size: 2.2em; }
+            h3 { font-size: 1.8em; }
+            .hero-headline {
+                font-size: 2.8em;
+            }
+            .hero-subheadline {
+                font-size: 1.2em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            .service-card, .why-card, .expertise-item, .team-member {
+                margin: 0 auto;
+                max-width: 400px; /* Constrain width for stacked cards */
+            }
+            .contact-content {
+                gap: 40px;
+            }
+            .contact-intro {
+                text-align: center;
+            }
+            .contact-details ul {
+                padding-left: 0;
+            }
+            .contact-details ul li {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            .hero-headline {
+                font-size: 2.2em;
+            }
+            .hero-subheadline {
+                font-size: 1em;
+            }
+            .hero-badge {
+                font-size: 0.8em;
+                padding: 8px 15px;
+            }
+            .header {
+                height: 60px;
+            }
+            .logo {
+                font-size: 1.5em;
+            }
+            .lang-switcher {
+                font-size: 0.9em;
+            }
+            .contact-form-card {
+                padding: 20px;
+            }
         }
     </style>
+    <!-- Font Awesome for icons (optional, but good for visual distinction) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="font-sans">
-    <!-- Header/Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="bg-primary text-white p-2 rounded-lg mr-2">
-                    <i class="fas fa-bicycle text-2xl"></i>
-                </div>
-                <a href="#" class="text-2xl font-bold text-gray-800">GRINDFIX</a>
-            </div>
-            
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-800 hover:text-primary font-medium">Strona Główna</a>
-                <a href="#services" class="text-gray-800 hover:text-primary font-medium">Usługi</a>
-                <a href="#about" class="text-gray-800 hover:text-primary font-medium">O Nas</a>
-                <a href="#contact" class="text-gray-800 hover:text-primary font-medium">Kontakt</a>
-                <a href="#faq" class="text-gray-800 hover:text-primary font-medium">FAQ</a>
+<body>
+
+    <!-- Header -->
+    <header id="home" class="header">
+        <div class="container header-content">
+            <a href="#home" class="logo">WBW Legal</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link" data-en="Home" data-pl="Strona Główna" data-ru="Главная">Home</a></li>
+                    <li><a href="#services" class="nav-link" data-en="Services" data-pl="Usługi" data-ru="Услуги">Services</a></li>
+                    <li><a href="#why-choose-us" class="nav-link" data-en="Why Choose Us" data-pl="Dlaczego My" data-ru="Почему Мы">Why Choose Us</a></li>
+                    <li><a href="#expertise" class="nav-link" data-en="Our Expertise" data-pl="Nasza Ekspertyza" data-ru="Наша Экспертиза">Our Expertise</a></li>
+                    <li><a href="#team" class="nav-link" data-en="Team" data-pl="Zespół" data-ru="Команда">Team</a></li>
+                    <li><a href="#contact" class="nav-link" data-en="Contact" data-pl="Kontakt" data-ru="Контакты">Contact</a></li>
+                </ul>
             </nav>
-            
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+            <div class="lang-switcher" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="lang-current" data-lang="en">EN <i class="fas fa-caret-down"></i></span>
+                <div class="lang-dropdown" role="menu">
+                    <a href="#" class="lang-option active-lang" data-lang="en" role="menuitem">EN</a>
+                    <a href="#" class="lang-option" data-lang="pl" role="menuitem">PL</a>
+                    <a href="#" class="lang-option" data-lang="ru" role="menuitem">RU</a>
+                </div>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
-            <a href="#home" class="block py-2 text-gray-800 hover:text-primary">Strona Główna</a>
-            <a href="#services" class="block py-2 text-gray-800 hover:text-primary">Usługi</a>
-            <a href="#about" class="block py-2 text-gray-800 hover:text-primary">O Nas</a>
-            <a href="#contact" class="block py-2 text-gray-800 hover:text-primary">Kontakt</a>
-            <a href="#faq" class="block py-2 text-gray-800 hover:text-primary">FAQ</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero text-white py-20 md:py-32 animate-fadeIn">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">Profesjonalny Serwis Rowerowy</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Kompleksowa obsługa Twojego roweru - od przeglądów po specjalistyczne naprawy. Dbamy o każdy szczegół!</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#booking" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Zarezerwuj wizytę</a>
-                <a href="#services" class="bg-secondary hover:bg-yellow-500 text-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300">Nasze usługi</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Services -->
-    <section class="bg-gray-100 py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Popularne Usługi</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                    <div class="text-primary mb-4">
-                        <i class="fas fa-search text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Przegląd Roweru</h3>
-                    <p class="text-gray-600 mb-4">Kompleksowa kontrola stanu technicznego Twojego roweru.</p>
-                    <div class="text-primary font-bold text-xl">200 zł</div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                    <div class="text-primary mb-4">
-                        <i class="fas fa-cog text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Regulacja Przerzutek</h3>
-                    <p class="text-gray-600 mb-4">Precyzyjna regulacja zapewniająca płynne zmiany biegów.</p>
-                    <div class="text-primary font-bold text-xl">35 zł</div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                    <div class="text-primary mb-4">
-                        <i class="fas fa-tire text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Wymiana Opony</h3>
-                    <p class="text-gray-600 mb-4">Profesjonalna wymiana opony z kontrolą stanu dętki.</p>
-                    <div class="text-primary font-bold text-xl">Od 30 zł</div>
-                </div>
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1 class="hero-headline" data-en="Your Trusted Legal Partner in Europe" data-pl="Twój Zaufany Partner Prawny w Europie" data-ru="Ваш Надежный Юридический Партнер в Европе">Your Trusted Legal Partner in Europe</h1>
+            <p class="hero-subheadline" data-en="Expert legal services for individuals, startups, and corporations across the EU" data-pl="Profesjonalne usługi prawne dla osób fizycznych, startupów i korporacji w całej UE, z siedzibą w Krakowie." data-ru="Экспертные юридические услуги для частных лиц, стартапов и корпораций по всей территории ЕС, с офисом в Кракове.">Expert legal services for individuals, startups, and corporations across the EU</p>
+            <a href="#contact" class="btn btn-primary" data-en="Request a Consultation" data-pl="Poproś o Bezpłatną Konsultację" data-ru="Запросить Консультацию">Request a Consultation</a>
+            <div class="hero-badges">
+                <span class="hero-badge" data-en="Registered EU Law Firm" data-pl="Zarejestrowana Kancelaria Prawna UE" data-ru="Зарегистрированная Юридическая Фирма ЕС">Registered EU Law Firm</span>
+                <span class="hero-badge" data-en="10+ Years Experience" data-pl="Ponad 10 Lat Doświadczenia" data-ru="Более 10 Лет Опыт">10+ Years Experience</span>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Nasze Usługi</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Oferujemy kompleksowe usługi serwisowe dla wszystkich typów rowerów - od miejskich po elektryczne.</p>
-            
-            <!-- Service Tabs -->
-            <div class="flex flex-wrap justify-center mb-8 gap-2">
-                <button onclick="openTab(event, 'bike-check')" class="tab-btn active-tab px-4 py-2 rounded-lg font-medium">Przegląd Roweru</button>
-                <button onclick="openTab(event, 'tires')" class="tab-btn px-4 py-2 rounded-lg font-medium">Usługi Ogumienia</button>
-                <button onclick="openTab(event, 'wheels')" class="tab-btn px-4 py-2 rounded-lg font-medium">Usługi Kół</button>
-                <button onclick="openTab(event, 'adjustments')" class="tab-btn px-4 py-2 rounded-lg font-medium">Regulacje</button>
-                <button onclick="openTab(event, 'parts')" class="tab-btn px-4 py-2 rounded-lg font-medium">Wymiany Części</button>
-                <button onclick="openTab(event, 'additional')" class="tab-btn px-4 py-2 rounded-lg font-medium">Dodatkowe</button>
-            </div>
-            
-            <!-- Tab Content -->
-            <div id="bike-check" class="tab-content animate-fadeIn">
-                <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm mb-6 transition duration-300">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Podstawowy Przegląd Roweru</h3>
-                            <p class="text-gray-600">Kompleksowa kontrola stanu technicznego roweru z kosztorysem ewentualnych napraw.</p>
-                        </div>
-                        <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">200 zł</div>
-                    </div>
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="fade-in" data-en="Our Legal Services" data-pl="Nasze Usługi Prawne" data-ru="Наши Юридические Услуги">Our Legal Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                    <h3 data-en="Immigration & Residency Law" data-pl="Prawo Imigracyjne i Pobytowe" data-ru="Иммиграционное и Резидентское Право">Immigration & Residency Law</h3>
+                    <p data-en="Navigating visas, work permits, appeals, legalization, and achieving EU residency." data-pl="Kompleksowa obsługa w zakresie wiz, pozwoleń na pracę, odwołań, legalizacji pobytu oraz uzyskania rezydencji UE. Pomagamy w całym procesie." data-ru="Комплексная помощь в получении виз, разрешений на работу, обжалований, легализации пребывания и получении вида на жительство в ЕС. Мы сопровождаем вас на каждом этапе.">Navigating visas, work permits, appeals, legalization, and achieving EU residency.</p>
                 </div>
-                
-                <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm mb-6 transition duration-300">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Zaawansowany Przegląd Roweru</h3>
-                            <p class="text-gray-600">Pełna diagnostyka, czyszczenie i smarowanie wszystkich ruchomych części.</p>
-                        </div>
-                        <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
-                    </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3 data-en="Company Formation & Business Law" data-pl="Zakładanie Firm i Prawo Gospodarcze" data-ru="Создание Компаний и Бизнес-Право">Company Formation & Business Law</h3>
+                    <p data-en="Expert assistance with registering companies in Poland/EU, ensuring compliance, and VAT setup." data-pl="Profesjonalna pomoc w zakładaniu i rejestracji firm w Polsce i na terenie całej UE, zapewnienie pełnej zgodności z przepisami oraz konfiguracja VAT." data-ru="Профессиональная помощь в создании и регистрации компаний в Польше и по всей территории ЕС, обеспечение полного соответствия законодательству и настройка НДС.">Expert assistance with registering companies in Poland/EU, ensuring compliance, and VAT setup.</p>
                 </div>
-            </div>
-            
-            <div id="tires" class="tab-content hidden animate-fadeIn">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana dętki</h3>
-                                <p class="text-gray-600">Standardowy rower</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana dętki</h3>
-                                <p class="text-gray-600">Rower elektryczny</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">45 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony</h3>
-                                <p class="text-gray-600">Standardowy rower</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">40 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Konwersja na Tubeless</h3>
-                                <p class="text-gray-600">Za koło (bez kosztów materiałów)</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">80 zł</div>
-                        </div>
-                    </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3 data-en="Real Estate & Property Law" data-pl="Prawo Nieruchomości" data-ru="Право Недвижимости">Real Estate & Property Law</h3>
+                    <p data-en="Comprehensive contract review, property due diligence, and notarization support." data-pl="Szczegółowy przegląd umów nieruchomości, kompleksowe due diligence oraz wsparcie notarialne przy transakcjach kupna-sprzedaży i najmu." data-ru="Детальный анализ договоров недвижимости, комплексная проверка юридической чистоты (due diligence) и нотариальная поддержка при сделках купли-продажи и аренды.">Comprehensive contract review, property due diligence, and notarization support.</p>
                 </div>
-            </div>
-            
-            <div id="wheels" class="tab-content hidden animate-fadeIn">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Centrowanie koła</h3>
-                                <p class="text-gray-600">Standardowe koło</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">60 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Budowa koła na zamówienie</h3>
-                                <p class="text-gray-600">Od podstaw z nowych komponentów</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Serwis koła z silnikiem</h3>
-                                <p class="text-gray-600">Dla rowerów elektrycznych</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">200 zł</div>
-                        </div>
-                    </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-users"></i></div>
+                    <h3 data-en="Civil & Family Law" data-pl="Prawo Cywilne i Rodzinne" data-ru="Гражданское и Семейное Право">Civil & Family Law</h3>
+                    <p data-en="Handling divorce, inheritance, family reunification, and complex cross-border disputes." data-pl="Obsługa spraw rozwodowych, podziału majątku, dziedziczenia, łączenia rodzin oraz złożonych sporów transgranicznych, zawsze z empatią i dyskrecją." data-ru="Ведение дел о разводе, разделе имущества, наследстве, воссоединении семьи и сложных трансграничных спорах, всегда с эмпатией и конфиденциальностью.">Handling divorce, inheritance, family reunification, and complex cross-border disputes.</p>
                 </div>
-            </div>
-            
-            <div id="adjustments" class="tab-content hidden animate-fadeIn">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja przerzutek</h3>
-                                <p class="text-gray-600">Tylnej i przedniej</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">35 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja hamulców hydraulicznych</h3>
-                                <p class="text-gray-600">Ustawienie i odpowietrzenie</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">95 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja sterów</h3>
-                                <p class="text-gray-600">Ustawienie kierownicy i widelca</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Regulacja wspornika kierownicy</h3>
-                                <p class="text-gray-600">Dokładne ustawienie wysokości</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">25 zł</div>
-                        </div>
-                    </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                    <h3 data-en="Court Representation" data-pl="Reprezentacja Sądowa" data-ru="Судебное Представительство">Court Representation</h3>
+                    <p data-en="Professional litigation services in Polish/EU courts and administrative hearings." data-pl="Skuteczna reprezentacja w postępowaniach sądowych przed sądami polskimi i unijnymi, a także w postępowaniach administracyjnych i arbitrażowych." data-ru="Эффективное представительство в судебных процессах в польских и европейских судах, а также в административных и арбитражных разбирательствах.">Professional litigation services in Polish/EU courts and administrative hearings.</p>
                 </div>
-            </div>
-            
-            <div id="parts" class="tab-content hidden animate-fadeIn">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana bębenka piasty</h3>
-                                <p class="text-gray-600">Standardowy rower</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">30 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana suportu</h3>
-                                <p class="text-gray-600">Różne typy suportów</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">48 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana widelca</h3>
-                                <p class="text-gray-600">Z demontażem i montażem koła</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana korby</h3>
-                                <p class="text-gray-600">Z zestawem zębatek</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">65 zł</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="additional" class="tab-content hidden animate-fadeIn">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Smarowanie łańcucha</h3>
-                                <p class="text-gray-600">Czyszczenie i nałożenie profesjonalnego smaru</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">20 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Serwis roweru elektrycznego</h3>
-                                <p class="text-gray-600">Diagnostyka układu elektrycznego</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">150 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Montaż roweru z paczki</h3>
-                                <p class="text-gray-600">Podstawowy montaż</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">100 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Budowa roweru z części</h3>
-                                <p class="text-gray-600">Kompletna budowa od podstaw</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">600 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony w hulajnodze</h3>
-                                <p class="text-gray-600">Standardowa wymiana</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">120 zł</div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-800">Wymiana opony w hulajnodze elektrycznej</h3>
-                                <p class="text-gray-600">Z demontażem silnika</p>
-                            </div>
-                            <div class="text-primary font-bold text-xl whitespace-nowrap ml-4">155 zł</div>
-                        </div>
-                    </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 data-en="Tax & Compliance Consulting" data-pl="Doradztwo Podatkowe i Zgodność" data-ru="Налоговое и Комплаенс Консалтинг">Tax & Compliance Consulting</h3>
+                    <p data-en="Strategic advice for tax optimization and ensuring full regulatory compliance." data-pl="Strategiczne doradztwo w zakresie optymalizacji podatkowej, planowania podatkowego oraz zapewnienia pełnej zgodności z obowiązującymi przepisami prawnymi i podatkowymi." data-ru="Стратегическое консультирование по вопросам налоговой оптимизации, налогового планирования и обеспечения полного соответствия действующему законодательству и налоговым нормам.">Strategic advice for tax optimization and ensuring full regulatory compliance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Section -->
-    <section id="booking" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Rezerwacja Online</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Wybierz usługę, termin i zarezerwuj wizytę w naszym serwisie.</p>
-            
-            <div class="bg-white p-6 md:p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-                <form id="booking-form" action="https://formspree.io/f/xeoablye" method="POST">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="service" class="block text-gray-700 font-medium mb-2">Wybierz usługę*</label>
-                            <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                                <option value="">-- Wybierz usługę --</option>
-                                <option value="basic-check">Podstawowy Przegląd Roweru - 42 zł</option>
-                                <option value="advanced-check">Zaawansowany Przegląd Roweru - 120 zł</option>
-                                <option value="tire-change">Wymiana dętki - od 30 zł</option>
-                                <option value="wheel-center">Centrowanie koła - 60 zł</option>
-                                <option value="gears-adjust">Regulacja przerzutek - 35 zł</option>
-                                <option value="brakes-adjust">Regulacja hamulców hydraulicznych - 95 zł</option>
-                                <option value="chain-service">Smarowanie łańcucha - 20 zł</option>
-                                <option value="other">Inna usługa (wyjaśnij w uwagach)</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="date" class="block text-gray-700 font-medium mb-2">Data wizyty*</label>
-                            <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div>
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Imię i nazwisko*</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div>
-                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon*</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email*</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div>
-                            <label for="bike-type" class="block text-gray-700 font-medium mb-2">Typ roweru</label>
-                            <select id="bike-type" name="bike-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                <option value="standard">Standardowy</option>
-                                <option value="electric">Elektryczny</option>
-                                <option value="mtb">Górski (MTB)</option>
-                                <option value="road">Szosowy</option>
-                                <option value="city">Miejski</option>
-                                <option value="other">Inny</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6">
-                        <label for="notes" class="block text-gray-700 font-medium mb-2">Uwagi</label>
-                        <textarea id="notes" name="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-center">
-                        <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Zarezerwuj</button>
-                    </div>
-                </form>
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="why-choose-us-section">
+        <div class="container">
+            <h2 class="fade-in" data-en="Why Choose WBW Legal?" data-pl="Dlaczego Wybrać WBW Legal?" data-ru="Почему стоит выбрать WBW Legal?">Why Choose WBW Legal?</h2>
+            <p class="team-intro fade-in" data-en="Choosing the right legal partner is crucial. At WBW Legal, we combine deep expertise with a client-first philosophy to deliver exceptional results. Our commitment to your success is reflected in every aspect of our service." data-pl="Wybór odpowiedniego partnera prawnego jest kluczowy. W WBW Legal łączymy głęboką wiedzę z filozofią zorientowaną na klienta, aby osiągać wyjątkowe rezultaty. Nasze zaangażowanie w Twój sukces odzwierciedla się w każdym aspekcie naszych usług." data-ru="Выбор правильного юридического партнера имеет решающее значение. В WBW Legal мы сочетаем глубокие знания с философией, ориентированной на клиента, для достижения исключительных результатов. Наша приверженность вашему успеху отражена в каждом аспекте наших услуг.">Choosing the right legal partner is crucial. At WBW Legal, we combine deep expertise with a client-first philosophy to deliver exceptional results. Our commitment to your success is reflected in every aspect of our service.</p>
+            <div class="why-choose-us-grid">
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-gavel"></i></div>
+                    <h3 data-en="Legal Expertise" data-pl="Ekspertyza Prawna" data-ru="Юридическая Экспертиза">Legal Expertise</h3>
+                    <p data-en="Deep knowledge across various legal fields, ensuring comprehensive solutions for complex cases." data-pl="Głęboka wiedza w różnych dziedzinach prawa, zapewniająca kompleksowe rozwiązania dla złożonych spraw." data-ru="Глубокие знания в различных областях права, обеспечивающие комплексные решения для сложных дел.">Deep knowledge across various legal fields, ensuring comprehensive solutions for complex cases.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-globe"></i></div>
+                    <h3 data-en="International Focus" data-pl="Orientacja Międzynarodowa" data-ru="Международная Ориентация">International Focus</h3>
+                    <p data-en="Specializing in cross-border law, we understand the nuances of international regulations." data-pl="Specjalizujemy się w prawie transgranicznym, rozumiemy niuanse międzynarodowych przepisów." data-ru="Специализируясь на трансграничном праве, мы понимаем нюансы международных правил.">Specializing in cross-border law, we understand the nuances of international regulations.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 data-en="Client-Centric Approach" data-pl="Podejście Zorientowane na Klienta" data-ru="Фокус на клиенте">Client-Centric Approach</h3>
+                    <p data-en="Your needs are our priority. We provide tailored advice and dedicated support." data-pl="Twoje potrzeby są naszym priorytetem. Zapewniamy spersonalizowane doradztwo i dedykowane wsparcie." data-ru="Ваши потребности — наш приоритет. Мы предоставляем индивидуальные консультации и специализированную поддержку.">Your needs are our priority. We provide tailored advice and dedicated support.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-comments"></i></div>
+                    <h3 data-en="Multilingual Team" data-pl="Wielojęzyczny Zespół" data-ru="Многоязычная Команда">Multilingual Team</h3>
+                    <p data-en="Fluent in English, Polish, and Russian, ensuring clear communication regardless of your background." data-pl="Biegła znajomość angielskiego, polskiego i rosyjskiego, zapewniająca jasną komunikację niezależnie od Twojego pochodzenia." data-ru="Свободное владение английским, польским и русским языками, обеспечивающее четкое общение независимо от вашего происхождения.">Fluent in English, Polish, and Russian, ensuring clear communication regardless of your background.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <h3 data-en="Timely Responses" data-pl="Terminowe Odpowiedzi" data-ru="Своевременные Ответы">Timely Responses</h3>
+                    <p data-en="We value your time. Expect prompt and efficient communication for all your inquiries." data-pl="Cenimy Twój czas. Oczekuj szybkiej i skutecznej komunikacji we wszystkich swoich zapytaniach." data-ru="Мы ценим ваше время. Ожидайте оперативного и эффективного общения по всем вашим запросам.">We value your time. Expect prompt and efficient communication for all your inquiries.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-award"></i></div>
+                    <h3 data-en="Proven Track Record" data-pl="Sprawdzone Osiągnięcia" data-ru="Проверенный Опыт">Proven Track Record</h3>
+                    <p data-en="Years of successful cases and satisfied clients demonstrate our commitment to excellence." data-pl="Lata udanych spraw i zadowolonych klientów świadczą o naszym zaangażowaniu w doskonałość." data-ru="Годы успешных дел и довольных клиентов демонстрируют нашу приверженность совершенству.">Years of successful cases and satisfied clients demonstrate our commitment to excellence.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nasz serwis rowerowy" class="rounded-lg shadow-lg w-full">
+    <!-- Our Expertise Section -->
+    <section id="expertise" class="expertise-section">
+        <div class="container">
+            <h2 class="fade-in" data-en="Our Key Areas of Expertise" data-pl="Nasze Kluczowe Obszary Ekspertyzy" data-ru="Наши Ключевые Области Экспертизы">Our Key Areas of Expertise</h2>
+            <p class="team-intro fade-in" data-en="Our team possesses specialized knowledge in a wide range of legal disciplines, offering precise and effective solutions. We stay updated with the latest legal developments to serve you better." data-pl="Nasz zespół posiada specjalistyczną wiedzę w szerokim zakresie dyscyplin prawnych, oferując precyzyjne i skuteczne rozwiązania. Jesteśmy na bieżąco z najnowszymi zmianami prawnymi, aby lepiej Ci służyć." data-ru="Наша команда обладает специализированными знаниями в широком спектре юридических дисциплин, предлагая точные и эффективные решения. Мы постоянно следим за последними изменениями в законодательстве, чтобы предоставлять вам лучшие услуги.">Our team possesses specialized knowledge in a wide range of legal disciplines, offering precise and effective solutions.</p>
+            <div class="expertise-grid">
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-redo-alt"></i></div>
+                    <p data-en="Restructuring, Bankruptcy & Liquidation" data-pl="Restrukturyzacja, Upadłość i Likwidacja" data-ru="Реструктуризация, Банкротство и Ликвидация">Restructuring, Bankruptcy & Liquidation</p>
                 </div>
-                
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-800">O Nas</h2>
-                    <p class="text-gray-600 mb-4">GRINDFIX to profesjonalny serwis rowerowy z wieloletnim doświadczeniem w branży. Nasza pasja do rowerów przekłada się na najwyższą jakość świadczonych usług.</p>
-                    <p class="text-gray-600 mb-4">Zespół tworzą wykwalifikowani mechanicy, którzy regularnie podnoszą swoje kwalifikacje, aby zapewnić kompleksową obsługę wszystkich typów rowerów - od miejskich po specjalistyczne rowery elektryczne.</p>
-                    <p class="text-gray-600 mb-6">W naszej pracy kierujemy się zasadą "zrób to dobrze za pierwszym razem". Dzięki temu nasi klienci mogą cieszyć się sprawnym rowerem przez długi czas.</p>
-                    
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center">
-                            <div class="bg-primary text-white p-2 rounded-full mr-2">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <span class="text-gray-700">Profesjonalizm</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-primary text-white p-2 rounded-full mr-2">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <span class="text-gray-700">Doświadczenie</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-primary text-white p-2 rounded-full mr-2">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <span class="text-gray-700">Jakość</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-primary text-white p-2 rounded-full mr-2">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <span class="text-gray-700">Terminowość</span>
-                        </div>
-                    </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-leaf"></i></div>
+                    <p data-en="Green Energy & Environmental Protection" data-pl="Zielona Energia i Ochrona Środowiska" data-ru="Зеленая Энергетика и Охрана Окружающей Среды">Green Energy & Environmental Protection</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-ship"></i></div>
+                    <p data-en="Maritime Law & Ports" data-pl="Prawo Morskie i Porty" data-ru="Морское Право и Порты">Maritime Law & Ports</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <p data-en="Project Financing" data-pl="Finansowanie Przedsięwzięć" data-ru="Финансирование Проектов">Project Financing</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-bezier-curve"></i></div>
+                    <p data-en="Mergers & Acquisitions (M&A)" data-pl="Fuzje i Przejęcia (M&A)" data-ru="Слияния и Поглощения (M&A)">Mergers & Acquisitions (M&A)</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-user-friends"></i></div>
+                    <p data-en="Corporate Law & Governance" data-pl="Prawo Korporacyjne i Ład Korporacyjny" data-ru="Корпоративное Право и Управление">Corporate Law & Governance</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-file-contract"></i></div>
+                    <p data-en="Contract Drafting & Negotiation" data-pl="Sporządzanie i Negocjowanie Umów" data-ru="Составление и Ведение Переговоров по Контрактам">Contract Drafting & Negotiation</p>
+                </div>
+                <div class="expertise-item fade-in">
+                    <div class="expertise-icon"><i class="fas fa-landmark"></i></div>
+                    <p data-en="Administrative Law" data-pl="Prawo Administracyjne" data-ru="Административное Право">Administrative Law</p>
                 </div>
             </div>
-            
-            <!-- Testimonials -->
-            <div class="mt-16">
-                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Opinie Naszych Klientów</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Profesjonalna obsługa i szybka realizacja. Mój rower jeździ jak nowy po przeglądzie w GRINDFIX. Polecam!"</p>
-                        <div class="flex items-center">
-                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                                <i class="fas fa-user text-gray-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Marek K.</h4>
-                                <p class="text-sm text-gray-500">Klient od 2021</p>
-                            </div>
-                        </div>
+        </div>
+    </section>
+
+    <!-- About / Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <h2 class="fade-in" data-en="Meet the WBW Legal Team" data-pl="Poznaj Zespół WBW Legal" data-ru="Познакомьтесь с Командой WBW Legal">Meet the WBW Legal Team</h2>
+            <p class="team-intro fade-in" data-en="WBW Legal is a multilingual legal consultancy based in Warsaw, Poland. We work with clients across Europe, providing trustworthy legal advice tailored to international realities." data-pl="WBW Legal to wielojęzyczna kancelaria prawna z siedzibą w Warszawie, Polska. Współpracujemy z klientami indywidualnymi i biznesowymi w całej Europie, świadcząc rzetelne doradztwo prawne dostosowane do międzynarodowych realiów i specyfiki każdego przypadku. Nasz zespół łączy głęboką wiedzę prawniczą z indywidualnym podejściem do klienta." data-ru="WBW Legal — это многоязычная юридическая консультация, базирующаяся в Варшаве, Польша. Мы работаем с частными и корпоративными клиентами по всей Европе, предоставляя надежные юридические консультации, адаптированные к международным реалиям и специфике каждого дела. Наша команда сочетает глубокие юридические знания с индивидуальным подходом к клиенту.">
+                WBW Legal is a multilingual legal consultancy based in Warsaw, Poland. We work with clients across Europe, providing trustworthy legal advice tailored to international realities. Our team combines deep legal expertise with a client-focused approach.
+            </p>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <img src="https://academy-smolna.ybp.org.pl/images/Wadysaw_Biekowski2.jpg" alt="Władysław Bieńkowski">
+                    <div class="team-info">
+                        <h4 data-en="Władysław Bieńkowski" data-pl="Władysław Bieńkowski" data-ru="Владислав Беньковский">Władysław Bieńkowski</h4>
+                        <p data-en="Founding Partner" data-pl="Partner Założyciel" data-ru="Партнер-основатель">Founding Partner</p>
+                        <p class="bio" data-en="Władysław is the founding partner of WBW Legal, with extensive experience in EU law. He leads our firm with a focus on delivering strategic and effective legal solutions to our international clientele." data-pl="Władysław jest partnerem założycielem WBW Legal, posiadającym bogate doświadczenie w prawie UE. Kieruje naszą kancelarią, koncentrując się na dostarczaniu strategicznych i skutecznych rozwiązań prawnych dla naszej międzynarodowej klienteli." data-ru="Владислав является партнером-основателем WBW Legal с обширным опытом в европейском праве. Он руководит нашей фирмой, уделяя особое внимание предоставлению стратегических и эффективных юридических решений для нашей международной клиентуры.">Władysław is the founding partner of WBW Legal, with extensive experience in EU law. He leads our firm with a focus on delivering strategic and effective legal solutions to our international clientele.</p>
+                        <a href="https://linkedin.com/in/wladyslawbienkowski" target="_blank" aria-label="Władysław Bieńkowski LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
                     </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Świetna atmosfera i fachowa porada. W końcu znalazłam serwis, któremu mogę zaufać jeśli chodzi o mój rower elektryczny."</p>
-                        <div class="flex items-center">
-                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                                <i class="fas fa-user text-gray-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Anna Z.</h4>
-                                <p class="text-sm text-gray-500">Klientka od 2022</p>
-                            </div>
-                        </div>
+                </div>
+                <div class="team-member fade-in">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEwLVZAyYTHiw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1665478963531?e=2147483647&v=beta&t=EE-FzzgdhFkdE41qZaSei9gwELujl87xFHZSEsQ9U4M" alt="Agata Jeszczyna">
+                    <div class="team-info">
+                        <h4 data-en="Agata Jeszczyna" data-pl="Agata Jeszczyna" data-ru="Агата Ешчина">Agata Jeszczyna</h4>
+                        <p data-en="Legal Assistant" data-pl="Asystent Prawny" data-ru="Юридический ассистент">Legal Assistant</p>
+                        <p class="bio" data-en="Agata provides essential support across various legal cases, ensuring smooth administrative processes and client communication." data-pl="Agata zapewnia niezbędne wsparcie w różnych sprawach prawnych, dbając o sprawne procesy administracyjne i komunikację z klientami." data-ru="Агата оказывает необходимую поддержку по различным юридическим вопросам, обеспечивая бесперебойные административные процессы и связь с клиентами.">Agata provides essential support across various legal cases, ensuring smooth administrative processes and client communication.</p>
+                        <a href="https://linkedin.com/in/agatajeszczyna" target="_blank" aria-label="Agata Jeszczyna LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
                     </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">"Budowa koła na zamówienie wykonana perfekcyjnie. Minus za długi czas oczekiwania (2 tygodnie), ale warto było czekać."</p>
-                        <div class="flex items-center">
-                            <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                                <i class="fas fa-user text-gray-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Tomasz W.</h4>
-                                <p class="text-sm text-gray-500">Klient od 2020</p>
-                            </div>
-                        </div>
+                </div>
+                <div class="team-member fade-in">
+                    <img src="https://placehold.co/2832x2832/1B2A41/FFFFFF?text=Vera+Ivanenko" alt="Vera Ivanenko">
+                    <div class="team-info">
+                        <h4 data-en="Vera Ivanenko" data-pl="Vera Ivanenko" data-ru="Вера Иваненко">Vera Ivanenko</h4>
+                        <p data-en="Legal Assistant" data-pl="Asystent Prawny" data-ru="Юридический ассистент">Legal Assistant</p>
+                        <p class="bio" data-en="Vera assists our legal team and clients with dedication, ensuring all inquiries are handled efficiently and professionally." data-pl="Vera z zaangażowaniem wspiera nasz zespół prawny i klientów, dbając o efektywną i profesjonalną obsługę wszystkich zapytań." data-ru="Вера с преданностью помогает нашей юридической команде и клиентам, обеспечивая эффективное и профессиональное обслуживание всех запросов.">Vera assists our legal team and clients with dedication, ensuring all inquiries are handled efficiently and professionally.</p>
+                        <a href="https://linkedin.com/in/veraivanenko" target="_blank" aria-label="Vera Ivanenko LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
                     </div>
                 </div>
             </div>
@@ -612,449 +1055,267 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Kontakt</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Masz pytania? Chętnie na nie odpowiemy. Skontaktuj się z nami telefonicznie, mailowo lub odwiedź nasz serwis.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-gray-800">Dane kontaktowe</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="text-primary mr-4 mt-1">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Adres</h4>
-                                <p class="text-gray-600">Antoniego Józefa Madalińskiego 39/43, <br>02-544 Warszawa</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary mr-4 mt-1">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Telefon</h4>
-                                <p class="text-gray-600">+48 792 537 727</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary mr-4 mt-1">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Email</h4>
-                                <p class="text-gray-600">kontakt@grindfix.pl</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-primary mr-4 mt-1">
-                                <i class="fas fa-clock text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-800">Godziny otwarcia</h4>
-                                <p class="text-gray-600">Pon-Pt: 9:00 - 18:00<br>Sob: 10:00 - 14:00<br>Niedz: Zamknięte</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-medium text-gray-800 mb-4">Znajdź nas na:</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="bg-gray-200 hover:bg-primary hover:text-white text-gray-800 p-3 rounded-full transition duration-300">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
+    <section id="contact" class="contact-section">
+        <div class="container contact-content">
+            <div class="contact-intro fade-in">
+                <h2 data-en="Get in Touch with Us" data-pl="Skontaktuj się z Nami" data-ru="Свяжитесь с Нами">Get in Touch with Us</h2>
+                <p data-en="We respond to all inquiries within 24 hours. Let's discuss how WBW Legal can assist you." data-pl="Odpowiadamy na wszystkie zapytania w ciągu 24 godzin. Porozmawiajmy, jak WBW Legal może Ci pomóc w Twojej sprawie." data-ru="Мы отвечаем на все запросы в течение 24 часов. Давайте обсудим, как WBW Legal может помочь вам в вашем деле.">We respond to all inquiries within 24 hours. Let's discuss how WBW Legal can assist you.</p>
+                <div class="contact-details">
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <strong data-en="Email:" data-pl="E-mail:" data-ru="Эл. почта:">Email:</strong> <a href="mailto:office@wbw.legal">office@wbw.legal</a></li>
+                        <li><i class="fas fa-phone"></i> <strong data-en="Phone:" data-pl="Telefon:" data-ru="Телефон:">Phone:</strong> <a href="tel:+48600874322">+48 600 874 322</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong data-en="Address:" data-pl="Adres:" data-ru="Адрес:">Address:</strong> Piękna 43, 00-672 Warszawa, Poland</li>
+                        <li><i class="fas fa-clock"></i> <strong data-en="Working hours:" data-pl="Godziny pracy:" data-ru="Часы работы:">Working hours:</strong> Mon–Fri 10:00–18:00</li>
+                    </ul>
                 </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-6 text-gray-800">Formularz kontaktowy</h3>
-                    
-                    <form id="contact-form">
-                        <div class="mb-4">
-                            <label for="contact-name" class="block text-gray-700 font-medium mb-2">Imię i nazwisko*</label>
-                            <input type="text" id="contact-name" name="contact-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="contact-email" class="block text-gray-700 font-medium mb-2">Email*</label>
-                            <input type="email" id="contact-email" name="contact-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="contact-phone" class="block text-gray-700 font-medium mb-2">Telefon</label>
-                            <input type="tel" id="contact-phone" name="contact-phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="contact-subject" class="block text-gray-700 font-medium mb-2">Temat*</label>
-                            <select id="contact-subject" name="contact-subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                                <option value="">-- Wybierz temat --</option>
-                                <option value="question">Pytanie o usługę</option>
-                                <option value="booking">Rezerwacja terminu</option>
-                                <option value="complaint">Reklamacja</option>
-                                <option value="other">Inny</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="contact-message" class="block text-gray-700 font-medium mb-2">Wiadomość*</label>
-                            <textarea id="contact-message" name="contact-message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
-                        </div>
-                        
-                        <div class="flex justify-end">
-                            <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Wyślij</button>
-                        </div>
-                    </form>
+                <div class="google-map fade-in">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.9056324888147!2d21.01428581594956!3d52.22055627976839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc9b9c1b4b19%3A0x7d6c6c6c6c6c6c6c!2sPi%C4%99kna%2043%2C%2000-672%20Warszawa%2C%20Poland!5e0!3m2!1sen!2spl!4v1719999999999!5m2!1sen!2spl"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
                 </div>
             </div>
-            
-            <div class="mt-12 bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.650385365508!2d21.01272431579689!3d52.22967597976097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!5e0!3m2!1spl!2spl!4v1621439973992!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+            <div class="contact-form-card fade-in">
+                <form>
+                    <div class="form-group">
+                        <label for="name" data-en="Name (required)" data-pl="Imię (wymagane)" data-ru="Имя (обязательно)">Name (required)</label>
+                        <input type="text" id="name" name="name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-en="Email (required)" data-pl="E-mail (wymagany)" data-ru="Электронная почта (обязательно)">Email (required)</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="service" data-en="What service are you looking for?" data-pl="Jakiej usługi szukasz?" data-ru="Какую услугу вы ищете?">What service are you looking for?</label>
+                        <select id="service" name="service">
+                            <option value="" data-en="Select a Service" data-pl="Wybierz usługę" data-ru="Выберите услугу">Select a Service</option>
+                            <option value="immigration" data-en="Immigration & Residency Law" data-pl="Prawo Imigracyjne i Pobytowe" data-ru="Иммиграционное и Резидентское Право">Immigration & Residency Law</option>
+                            <option value="company" data-en="Company Formation & Business Law" data-pl="Zakładanie Firm i Prawo Gospodarcze" data-ru="Создание Компаний и Бизнес-Право">Company Formation & Business Law</option>
+                            <option value="real_estate" data-en="Real Estate & Property Law" data-pl="Prawo Nieruchomości" data-ru="Право Недвижимости">Real Estate & Property Law</option>
+                            <option value="civil_family" data-en="Civil & Family Law" data-pl="Prawo Cywilne i Rodzinne" data-ru="Гражданское и Семейное Право">Civil & Family Law</option>
+                            <option value="court_representation" data-en="Court Representation" data-pl="Reprezentacja Sądowa" data-ru="Судебное Представительство">Court Representation</option>
+                            <option value="tax_compliance" data-en="Tax & Compliance Consulting" data-pl="Doradztwo Podatkowe i Zgodność" data-ru="Налоговое и Комплаенс Консалтинг">Tax & Compliance Consulting</option>
+                            <option value="restructuring" data-en="Restructuring, Bankruptcy & Liquidation" data-pl="Restrukturyzacja, Upadłość i Likwidacja" data-ru="Реструктуризация, Банкротство и Ликвидация">Restructuring, Bankruptcy & Liquidation</option>
+                            <option value="green_energy" data-en="Green Energy & Environmental Protection" data-pl="Zielona Energia i Ochrona Środowiska" data-ru="Зеленая Энергетика и Охрана Окружающей Среды">Green Energy & Environmental Protection</option>
+                            <option value="maritime_law" data-en="Maritime Law & Ports" data-pl="Prawo Morskie i Porty" data-ru="Морское Право и Порты">Maritime Law & Ports</option>
+                            <option value="project_financing" data-en="Project Financing" data-pl="Finansowanie Przedsięwzięć" data-ru="Финансирование Проектов">Project Financing</option>
+                            <option value="m_a" data-en="Mergers & Acquisitions (M&A)" data-pl="Fuzje i Przejęcia (M&A)" data-ru="Слияния и Поглощения (M&A)">Mergers & Acquisitions (M&A)</option>
+                            <option value="other" data-en="Other" data-pl="Inne" data-ru="Другое">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-en="Message" data-pl="Wiadomość" data-ru="Сообщение">Message</label>
+                        <textarea id="message" name="message" rows="5"></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="gdpr" name="gdpr" required aria-required="true">
+                        <label for="gdpr" data-en="I consent to the processing of my personal data (GDPR)" data-pl="Wyrażam zgodę na przetwarzanie moich danych osobowych (RODO)" data-ru="Я даю согласие на обработку моих персональных данных (GDPR)">I consent to the processing of my personal data (GDPR)</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-en="Send Message" data-pl="Wyślij Wiadomość" data-ru="Отправить Сообщение">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-16 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">Często Zadawane Pytania</h2>
-            <p class="text-center text-gray-600 mb-12">Odpowiedzi na najpopularniejsze pytania naszych klientów.</p>
-            
-            <div class="space-y-4">
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Jak zarezerwować usługę?</span>
-                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 text-gray-600">
-                            <p>Rezerwacji możesz dokonać na kilka sposobów:</p>
-                            <ul class="list-disc pl-5 mt-2 space-y-1">
-                                <li>Online poprzez formularz rezerwacyjny na naszej stronie</li>
-                                <li>Telefonicznie pod numerem +48 123 456 789</li>
-                                <li>Osobiście w naszym serwisie przy ul. Rowerowej 15 w Warszawie</li>
-                            </ul>
-                            <p class="mt-2">Po rezerwacji otrzymasz potwierdzenie terminu mailem lub SMS-em.</p>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="#home" class="logo">WBW Legal</a>
+                <p class="slogan" data-en="Clarity. Precision. Trust." data-pl="Jasność. Precyzja. Zaufanie." data-ru="Ясность. Точность. Доверие.">Clarity. Precision. Trust.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Quick Links" data-pl="Szybkie Linki" data-ru="Быстрые Ссылки">Quick Links</h4>
+                <ul>
+                    <li><a href="#services" data-en="Services" data-pl="Usługi" data-ru="Услуги">Services</a></li>
+                    <li><a href="#why-choose-us" data-en="Why Choose Us" data-pl="Dlaczego My" data-ru="Почему Мы">Why Choose Us</a></li>
+                    <li><a href="#expertise" data-en="Our Expertise" data-pl="Nasza Ekspertyza" data-ru="Наша Эксpertyza">Our Expertise</a></li>
+                    <li><a href="#team" data-en="Team" data-pl="Zespół" data-ru="Команда">Team</a></li>
+                    <li><a href="#contact" data-en="Contact" data-pl="Kontakt" data-ru="Контакты">Contact</a></li>
+                    <li><a href="#" data-en="Privacy Policy" data-pl="Polityka Prywatności" data-ru="Политика конфиденциальности">Privacy Policy</a></li> <!-- Could be a modal or separate page -->
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Follow Us" data-pl="Obserwuj Nas" data-ru="Подпишитесь на нас">Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/company/wbwlegal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin social-icon"></i></a>
                 </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Jaki jest czas realizacji budowy koła?</span>
-                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 text-gray-600">
-                            <p>Standardowy czas realizacji budowy koła na zamówienie to do 14 dni roboczych. Czas ten może się wydłużyć w przypadku:</p>
-                            <ul class="list-disc pl-5 mt-2 space-y-1">
-                                <li>Trudno dostępnych komponentów</li>
-                                <li>Okresu wzmożonego ruchu w sezonie wiosenno-letnim</li>
-                                <li>Specjalistycznych zamówień (np. koła do rowerów tandemowych)</li>
-                            </ul>
-                            <p class="mt-2">O dokładnym terminie realizacji poinformujemy Cię po złożeniu zamówienia.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Co obejmuje przegląd roweru?</span>
-                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 text-gray-600">
-                            <p>Podstawowy przegląd roweru (42 zł) obejmuje:</p>
-                            <ul class="list-disc pl-5 mt-2 space-y-1">
-                                <li>Kontrolę stanu ogumienia i ciśnienia w oponach</li>
-                                <li>Sprawdzenie działania hamulców</li>
-                                <li>Kontrolę stanu i ustawienia przerzutek</li>
-                                <li>Sprawdzenie luzów w układzie kierowniczym i suporcie</li>
-                                <li>Kontrolę stanu łańcucha i zębatek</li>
-                                <li>Ogólną ocenę stanu technicznego roweru</li>
-                            </ul>
-                            <p class="mt-2">Po przeglądzie otrzymasz szczegółowy kosztorys ewentualnych napraw.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Czy mogę zostawić rower w serwisie na czas naprawy?</span>
-                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 text-gray-600">
-                            <p>Tak, dysponujemy bezpiecznym parkingiem rowerowym, gdzie możesz zostawić swój rower na czas naprawy. Parking jest:</p>
-                            <ul class="list-disc pl-5 mt-2 space-y-1">
-                                <li>Monitorowany</li>
-                                <li>Zadaszony</li>
-                                <li>Dostępny w godzinach pracy serwisu</li>
-                            </ul>
-                            <p class="mt-2">Za przechowanie roweru powyżej 3 dni roboczych pobierana jest opłata 5 zł za każdy kolejny dzień.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Czy serwisujecie rowery elektryczne?</span>
-                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-4 text-gray-600">
-                            <p>Tak, specjalizujemy się w serwisie rowerów elektrycznych. Oferujemy:</p>
-                            <ul class="list-disc pl-5 mt-2 space-y-1">
-                                <li>Diagnostykę układu elektrycznego</li>
-                                <li>Naprawy i konserwację silników</li>
-                                <li>Wymianę baterii</li>
-                                <li>Regulację i naprawę systemów wspomagania</li>
-                                <li>Montaż akcesoriów elektrycznych</li>
-                            </ul>
-                            <p class="mt-2">Posiadamy specjalistyczne narzędzia i szkolenia do pracy z rowerami elektrycznymi najpopularniejszych marek.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200">
-                        <span class="font-medium text-gray-800 text-left">Jakie metody płatności akceptujecie?</span>
-                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <div class="p-4 text-gray-600">
-                                    <p>Akceptujemy następujące formy płatności:</p>
-                                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                                        <li>Gotówkę</li>
-                                        <li>Karty płatnicze (Visa, Mastercard)</li>
-                                        <li>Płatności online (Przelewy24, PayPal)</li>
-                                        <li>Przelewy bankowe (przedpłata za usługi powyżej 500 zł)</li>
-                                    </ul>
-                                    <p class="mt-2">W przypadku firm możliwa jest płatność z odroczonym terminem płatności (wymagane wcześniejsze ustalenia).</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <!-- Removed duplicated language switcher from footer -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-en="&copy; WBW Legal 2025. All rights reserved." data-pl="&copy; WBW Legal 2025. Wszelkie prawa zastrzeżone." data-ru="&copy; WBW Legal 2025. Все права защищены.">&copy; WBW Legal 2025. All rights reserved.</p>
+        </div>
+    </footer>
 
-            <!-- Newsletter -->
-            <section class="py-12 bg-primary text-white">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-2xl font-bold mb-4">Zapisz się do naszego newslettera</h2>
-                    <p class="mb-6 max-w-2xl mx-auto">Otrzymuj informacje o promocjach, porady serwisowe i nowościach w świecie rowerów.</p>
-                    
-                    <form class="max-w-md mx-auto flex">
-                        <input type="email" placeholder="Twój email" class="flex-grow px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
-                        <button type="submit" class="bg-secondary hover:bg-yellow-500 text-gray-800 font-bold px-6 py-2 rounded-r-lg transition duration-300">Zapisz się</button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="bg-gray-800 text-white py-8">
-                <div class="container mx-auto px-4">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div>
-                            <div class="flex items-center mb-4">
-                                <div class="bg-primary text-white p-2 rounded-lg mr-2">
-                                    <i class="fas fa-bicycle"></i>
-                                </div>
-                                <span class="text-xl font-bold">GRINDFIX</span>
-                            </div>
-                            <p class="text-gray-400">Profesjonalny serwis rowerowy w Warszawie. Dbamy o Twoje dwa kółka od 2010 roku.</p>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-bold mb-4">Usługi</h3>
-                            <ul class="space-y-2 text-gray-400">
-                                <li><a href="#" class="hover:text-white transition duration-200">Przeglądy</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Naprawy</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Regulacje</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Budowa kół</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Serwis e-bike</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-bold mb-4">Informacje</h3>
-                            <ul class="space-y-2 text-gray-400">
-                                <li><a href="#" class="hover:text-white transition duration-200">O nas</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Kontakt</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">FAQ</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Blog</a></li>
-                                <li><a href="#" class="hover:text-white transition duration-200">Kariera</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-bold mb-4">Kontakt</h3>
-                            <address class="not-italic text-gray-400 space-y-2">
-                                <p>ul. Rowerowa 15<br>00-001 Warszawa</p>
-                                <p>Tel: +48 123 456 789</p>
-                                <p>Email: kontakt@grindfix.pl</p>
-                            </address>
-                        </div>
-                    </div>
-                    
-                    <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 GRINDFIX. Wszelkie prawa zastrzeżone.</p>
-                        <div class="flex space-x-6">
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
-            <!-- Back to Top Button -->
-            <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
-                <i class="fas fa-arrow-up"></i>
-            </button>
-
-            <script>
-                // Mobile Menu Toggle
-                const menuToggle = document.getElementById('menu-toggle');
-                const mobileMenu = document.getElementById('mobile-menu');
-                
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                
-                // Service Tabs
-                function openTab(evt, tabName) {
-                    const tabContents = document.getElementsByClassName('tab-content');
-                    for (let i = 0; i < tabContents.length; i++) {
-                        tabContents[i].classList.add('hidden');
-                    }
-                    
-                    const tabButtons = document.getElementsByClassName('tab-btn');
-                    for (let i = 0; i < tabButtons.length; i++) {
-                        tabButtons[i].classList.remove('active-tab');
-                    }
-                    
-                    document.getElementById(tabName).classList.remove('hidden');
-                    evt.currentTarget.classList.add('active-tab');
-                }
-                
-                // Set first tab as active by default
-                document.addEventListener('DOMContentLoaded', function() {
-                    const firstTabBtn = document.querySelector('.tab-btn');
-                    if (firstTabBtn) {
-                        firstTabBtn.classList.add('active-tab');
-                    }
-                });
-                
-                // FAQ Accordion
-                const accordionBtns = document.querySelectorAll('.accordion-btn');
-                
-                accordionBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        this.querySelector('i').classList.toggle('rotate-180');
-                        
-                        const content = this.nextElementSibling;
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                        }
-                    });
-                });
-                
-                // Back to Top Button
-                const backToTopBtn = document.getElementById('back-to-top');
-                
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.classList.remove('opacity-0', 'invisible');
-                        backToTopBtn.classList.add('opacity-100', 'visible');
-                    } else {
-                        backToTopBtn.classList.remove('opacity-100', 'visible');
-                        backToTopBtn.classList.add('opacity-0', 'invisible');
-                    }
-                });
-                
-                backToTopBtn.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
                 });
-                
-                // Form Submissions
-                const bookingForm = document.getElementById('booking-form');
-                const contactForm = document.getElementById('contact-form');
-                
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-
-            fetch(this.action, {
-                method: this.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Dziękujemy za rezerwację! Skontaktujemy się z Tobą w celu potwierdzenia terminu.');
-                    this.reset();
-                } else {
-                    alert('Wystąpił błąd. Spróbuj ponownie później.');
-                }
-            })
-            .catch(() => {
-                alert('Błąd połączenia. Upewnij się, że masz dostęp do internetu i spróbuj ponownie.');
             });
-        });
-    }
-                
-                if (contactForm) {
-                    contactForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        alert('Dziękujemy za wiadomość! Odpowiemy najszybciej jak to możliwe.');
-                        this.reset();
-                    });
+
+            // Sticky Header & Background Change on Scroll
+            const header = document.querySelector('.header');
+            const heroSection = document.querySelector('.hero-section');
+            const heroSectionHeight = heroSection.offsetHeight;
+
+            const updateHeaderStyle = () => {
+                if (window.scrollY > heroSectionHeight - header.offsetHeight) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
-                
-                // Smooth scrolling for navigation
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 80,
-                                behavior: 'smooth'
+            };
+
+            window.addEventListener('scroll', updateHeaderStyle);
+            updateHeaderStyle(); // Call on load to set initial state
+
+            // Fade-in animation on scroll (Intersection Observer)
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.2, // When 20% of the element is visible
+                rootMargin: "0px 0px -50px 0px" // Start animating 50px before it hits the bottom of viewport
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('is-visible');
+                        appearOnScroll.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Language Switcher Functionality
+            const langSwitcher = document.querySelector('.lang-switcher');
+            const langDropdown = document.querySelector('.lang-dropdown');
+            const langCurrent = document.querySelector('.lang-current');
+            const langOptions = document.querySelectorAll('.lang-option');
+
+            let currentLang = 'en'; // Default language
+
+            // Function to update content based on selected language
+            const updateContentLanguage = (lang) => {
+                document.querySelectorAll('[data-en]').forEach(element => {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT') {
+                        // For input/textarea/select, update placeholder or options
+                        if (element.placeholder) {
+                            element.placeholder = element.getAttribute(`data-${lang}`) || element.getAttribute('data-en');
+                        }
+                        if (element.tagName === 'SELECT') {
+                            element.querySelectorAll('option').forEach(option => {
+                                option.textContent = option.getAttribute(`data-${lang}`) || option.getAttribute('data-en');
                             });
-                            
-                            // Close mobile menu if open
-                            mobileMenu.classList.add('hidden');
+                        }
+                    } else if (element.tagName === 'TITLE') {
+                        document.title = element.getAttribute(`data-${lang}`) || element.getAttribute('data-en');
+                    }
+                    else {
+                        element.textContent = element.getAttribute(`data-${lang}`) || element.getAttribute('data-en');
+                    }
+                });
+
+                // Update current language display in header and footer
+                langCurrent.setAttribute('data-lang', lang);
+                langCurrent.innerHTML = `${lang.toUpperCase()} <i class="fas fa-caret-down"></i>`;
+
+                // Update active class for language options
+                langOptions.forEach(option => {
+                    if (option.getAttribute('data-lang') === lang) {
+                        option.classList.add('active-lang');
+                    } else {
+                        option.classList.remove('active-lang');
+                    }
+                });
+
+                currentLang = lang; // Update the global current language
+            };
+
+            // Initial content update based on default language
+            updateContentLanguage(currentLang);
+
+            if (langSwitcher) {
+                langSwitcher.addEventListener('click', (event) => {
+                    const isExpanded = langSwitcher.classList.toggle('active');
+                    langSwitcher.setAttribute('aria-expanded', isExpanded);
+                    // Prevent closing if clicking inside dropdown
+                    if (event.target.closest('.lang-dropdown')) {
+                        event.stopPropagation();
+                    }
+                });
+
+                // Handle language option clicks
+                langOptions.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const selectedLang = e.target.getAttribute('data-lang');
+                        if (selectedLang) {
+                            updateContentLanguage(selectedLang);
+                            langSwitcher.classList.remove('active'); // Close dropdown
+                            langSwitcher.setAttribute('aria-expanded', 'false');
                         }
                     });
                 });
-            </script>
-        </body>
-        </html>
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', (event) => {
+                    if (!langSwitcher.contains(event.target) && langSwitcher.classList.contains('active')) {
+                        langSwitcher.classList.remove('active');
+                        langSwitcher.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Keyboard navigation for language switcher
+                langSwitcher.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const isExpanded = langSwitcher.classList.toggle('active');
+                        langSwitcher.setAttribute('aria-expanded', isExpanded);
+                        if (isExpanded) {
+                            langDropdown.querySelector('.lang-option').focus(); // Focus first option
+                        }
+                    } else if (e.key === 'Escape' && langSwitcher.classList.contains('active')) {
+                        langSwitcher.classList.remove('active');
+                        langSwitcher.setAttribute('aria-expanded', 'false');
+                        langSwitcher.focus();
+                    }
+                });
+
+                langDropdown.addEventListener('keydown', (e) => {
+                    const focusableElements = Array.from(langDropdown.querySelectorAll('.lang-option'));
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey) { // Shift + Tab
+                            if (document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            }
+                        } else { // Tab
+                            if (document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
